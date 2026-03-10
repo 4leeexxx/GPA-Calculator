@@ -1,152 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPA Calculator — Free Online Grade Point Average Calculator | ToolSuite</title>
-  <meta name="description" content="Free GPA calculator for high school and college students. Calculate your semester GPA, cumulative GPA, and see what grades you need to hit your target. Instant results." />
-  <meta name="keywords" content="GPA calculator, grade point average calculator, college GPA calculator, high school GPA calculator, cumulative GPA, semester GPA, how to calculate GPA, free GPA calculator online" />
-  <meta name="robots" content="index, follow" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; form-action 'none';" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="X-Frame-Options" content="DENY" />
-  <link rel="stylesheet" href="shared.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,500;1,400&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>GPA Calculator — Free Grade Point Average Calculator | ToolSuite</title>
+  <meta name="description" content="Free GPA calculator for high school and college. Calculate semester GPA, cumulative GPA instantly. No sign-up needed."/>
+  <meta name="keywords" content="GPA calculator, grade point average, college GPA, semester GPA, how to calculate GPA, free GPA calculator"/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fdf6ee;--surface:#fff;--surface2:#fff9f3;--border:#f0e4d4;--border-hi:#e8cfa8;
+  --gold:#f5a623;--gold-light:#fff3d6;--gold-dark:#d4880a;
+  --green:#27ae60;--green-light:#eafaf1;--red:#e74c3c;--red-light:#fdf0ee;
+  --blue:#3498db;--blue-light:#eaf4fd;--purple:#8e44ad;--purple-light:#f5eafb;
+  --text:#2d2416;--text-mid:#7a6148;--text-soft:#b09a7e;--text-dim:#d4c4ae;
+  --font-main:'Nunito',sans-serif;--font-serif:'Lora',serif;
+  --radius:20px;--radius-sm:12px;--radius-xs:8px;
+  --shadow-card:0 8px 40px rgba(120,80,20,.10);--shadow-btn:0 6px 24px rgba(245,166,35,.40)
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-main);min-height:100vh;overflow-x:hidden;position:relative}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;animation:orb-drift 18s ease-in-out infinite alternate}
+.orb1{width:520px;height:520px;background:rgba(245,166,35,.18);top:-120px;left:-160px;animation-duration:22s}
+.orb2{width:380px;height:380px;background:rgba(255,120,80,.12);top:40%;right:-100px;animation-duration:17s;animation-delay:-6s}
+.orb3{width:300px;height:300px;background:rgba(80,180,255,.10);bottom:10%;left:30%;animation-duration:25s;animation-delay:-12s}
+@keyframes orb-drift{from{transform:translate(0,0)scale(1)}to{transform:translate(30px,20px)scale(1.08)}}
+/* Ads hidden until approved */
+.ad-banner{display:none}
+.ad-sidebar{display:none}
+/* Nav */
+.site-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:12px 20px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-link{text-decoration:none;font-size:12px;font-weight:800;color:var(--text-mid);padding:6px 14px;border-radius:999px;border:1.5px solid var(--border);background:white;transition:all .2s;white-space:nowrap}
+.nav-link:hover{border-color:var(--gold);color:var(--gold-dark);background:var(--gold-light)}
+.nav-link.active{background:linear-gradient(135deg,#f5a623,#ff7c44);color:white;border-color:transparent;box-shadow:0 4px 14px rgba(245,166,35,.35)}
+/* Page */
+.page-wrapper{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 20px 60px}
+/* Header */
+.site-header{text-align:center;padding:44px 20px 22px}
+.logo-row{display:inline-flex;align-items:center;gap:16px;margin-bottom:18px}
+.logo-icon{width:60px;height:60px;background:linear-gradient(135deg,#f5a623,#ff7c44);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:26px;color:white;box-shadow:0 8px 28px rgba(245,166,35,.40);animation:icon-float 4s ease-in-out infinite;flex-shrink:0}
+@keyframes icon-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.logo{font-weight:900;font-size:clamp(1.6rem,5vw,2.8rem);letter-spacing:-.02em;line-height:1}
+.tagline{font-family:var(--font-serif);font-style:italic;font-size:14px;color:var(--text-soft);margin-top:4px}
+/* Layout */
+.main-layout{display:flex;align-items:flex-start;justify-content:center;gap:32px;margin-top:12px}
+/* Card */
+.calc-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:36px 32px;width:100%;max-width:580px;flex-shrink:0;box-shadow:var(--shadow-card);position:relative;overflow:hidden}
+.calc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f5a623,#ff7c44,#f5a623);background-size:200%;animation:shimmer 3s linear infinite}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+.section-label{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text-soft);margin-bottom:16px}
+/* Inputs */
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+.input-group{display:flex;flex-direction:column;gap:6px}
+.input-group.full-width{grid-column:1/-1}
+label{font-size:13px;font-weight:800;color:var(--text)}
+.input-hint{font-size:11px;color:var(--text-soft);font-style:italic;font-family:var(--font-serif)}
+.input-wrap{display:flex;align-items:center;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius-sm);transition:border-color .2s,box-shadow .2s,background .2s}
+.input-wrap:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,166,35,.15);background:white}
+.prefix{padding:0 13px;font-size:14px;color:var(--text-soft);border-right:1.5px solid var(--border);user-select:none;min-width:42px;text-align:center;flex-shrink:0}
+input[type=number],input[type=text]{flex:1;background:transparent;border:none;outline:none;padding:13px 15px;color:var(--text);font-family:var(--font-main);font-size:15px;font-weight:700;width:100%;appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+input::placeholder{color:var(--text-dim);font-weight:400}
+select{flex:1;background:transparent;border:none;outline:none;padding:13px 15px;color:var(--text);font-family:var(--font-main);font-size:14px;font-weight:700;width:100%;cursor:pointer}
+/* Buttons */
+.calc-btn{width:100%;padding:17px 24px;background:linear-gradient(135deg,#f5a623,#ff7c44);color:white;border:none;border-radius:var(--radius-sm);font-family:var(--font-main);font-size:16px;font-weight:900;cursor:pointer;box-shadow:var(--shadow-btn);transition:transform .18s,box-shadow .18s,filter .18s;position:relative;overflow:hidden}
+.calc-btn:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(245,166,35,.5);filter:brightness(1.05)}
+.calc-btn:active{transform:translateY(0)}
+.reset-btn{margin-top:16px;width:100%;background:transparent;border:1.5px solid var(--border-hi);color:var(--text-soft);border-radius:var(--radius-sm);padding:11px 20px;font-family:var(--font-main);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:none}
+.reset-btn:hover{border-color:var(--gold);color:var(--gold-dark);background:var(--gold-light)}
+/* Results */
+.results-panel{margin-top:28px;display:none}
+@keyframes pop-in{from{opacity:0;transform:scale(.96)translateY(10px)}to{opacity:1;transform:scale(1)translateY(0)}}
+.verdict-banner{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:var(--radius-sm);margin-bottom:18px;background:var(--gold-light);border:1.5px solid #f5d78e;transition:all .3s}
+.verdict-banner.win{background:var(--green-light);border-color:#a8e6c2}
+.verdict-banner.loss{background:var(--red-light);border-color:#f5bfba}
+.verdict-banner.info{background:var(--blue-light);border-color:#a8d4f5}
+.verdict-emoji{font-size:34px;line-height:1;flex-shrink:0}
+.verdict-title{font-size:16px;font-weight:900;color:var(--text);line-height:1.2}
+.verdict-sub{font-size:13px;color:var(--text-soft);font-family:var(--font-serif);font-style:italic;margin-top:2px}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.result-card{background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:16px;text-align:center;transition:transform .2s,box-shadow .2s}
+.result-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(120,80,20,.08)}
+.result-card.ra{background:var(--green-light);border-color:#a8e6c2}
+.result-card.ra.lc{background:var(--red-light);border-color:#f5bfba}
+.result-card.rb{background:var(--gold-light);border-color:#f5d78e}
+.result-card.rc{background:var(--blue-light);border-color:#a8d4f5}
+.result-card.rd{background:var(--purple-light);border-color:#d4a8f5}
+.res-icon{font-size:20px;margin-bottom:5px}
+.res-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
+.res-value{font-size:15px;font-weight:900;color:var(--text)}
+.res-value.xl{font-size:21px}
+.res-value.profit{color:var(--green)}
+.res-value.loss{color:var(--red)}
+.res-value.neutral{color:var(--blue)}
+/* Bar */
+.bar-wrap{margin-top:4px}
+.bar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:5px;font-weight:700}
+.bar-track{width:100%;height:11px;background:linear-gradient(90deg,var(--red-light) 0%,#fff5e0 33%,var(--gold-light) 50%,var(--green-light) 100%);border-radius:999px;border:1.5px solid var(--border);position:relative}
+.bar-fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transition:width .8s cubic-bezier(.22,1,.36,1),background .4s}
+.bar-needle{position:absolute;top:50%;transform:translate(-50%,-50%);width:18px;height:18px;background:white;border:2.5px solid var(--gold);border-radius:50%;box-shadow:0 2px 10px rgba(245,166,35,.4);transition:left .8s cubic-bezier(.22,1,.36,1),border-color .4s}
+/* Info steps */
+.info-section{max-width:560px;margin:48px auto 0;padding:0 4px}
+.info-title{font-weight:900;font-size:1.35rem;color:var(--text);margin-bottom:20px;letter-spacing:-.01em}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.step{background:white;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:18px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 12px rgba(120,80,20,.05);transition:transform .2s,box-shadow .2s}
+.step:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,166,35,.14)}
+.step-bubble{width:34px;height:34px;background:linear-gradient(135deg,#f5a623,#ff7c44);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:white;flex-shrink:0;box-shadow:0 4px 12px rgba(245,166,35,.30)}
+.step-body strong{display:block;font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px}
+.step-body p{font-size:12px;color:var(--text-soft);line-height:1.55;font-family:var(--font-serif);font-style:italic}
+/* SEO */
+.seo-section{max-width:760px;margin:48px auto 0;padding:0 4px}
+.seo-section h2{font-size:1.45rem;font-weight:900;color:var(--text);margin-bottom:10px;letter-spacing:-.01em}
+.seo-section h3{font-size:1.05rem;font-weight:800;color:var(--text-mid);margin:24px 0 7px}
+.seo-section p{font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:10px}
+.seo-section ul{padding-left:20px;margin-bottom:10px}
+.seo-section li{font-size:14px;color:var(--text-mid);line-height:1.8}
+.seo-section strong{color:var(--text)}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.faq-item{background:white;border:1.5px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:14px 18px;font-family:var(--font-main);font-size:14px;font-weight:800;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.faq-q:hover{background:var(--surface2)}
+.faq-icon{font-size:16px;transition:transform .3s;flex-shrink:0}
+.faq-q.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 18px 14px;font-size:14px;color:var(--text-mid);line-height:1.75;font-family:var(--font-serif);font-style:italic}
+.faq-a.open{display:block}
+/* Footer */
+.site-footer{text-align:center;padding:32px 0 20px;font-size:12px;color:var(--text-dim);font-family:var(--font-serif);font-style:italic;border-top:1.5px solid var(--border);margin-top:44px}
+.footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.footer-links a{font-size:12px;color:var(--text-soft);text-decoration:none;font-style:normal;font-family:var(--font-main);font-weight:700;transition:color .2s}
+.footer-links a:hover{color:var(--gold-dark)}
+/* Shake */
+@keyframes shake{0%{transform:translateX(0)}18%{transform:translateX(-7px)}36%{transform:translateX(7px)}54%{transform:translateX(-4px)}72%{transform:translateX(4px)}100%{transform:translateX(0)}}
+/* Responsive */
+@media(max-width:580px){
+  .calc-card{padding:24px 16px}
+  .input-grid{grid-template-columns:1fr}
+  .input-group.full-width{grid-column:auto}
+  .results-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .logo-row{gap:10px}
+  .logo-icon{width:48px;height:48px;font-size:20px}
+  .site-nav{gap:5px}
+  .nav-link{font-size:10px;padding:5px 9px}
+}
+</style>
+
+  <style>
+  .course-row{margin-bottom:14px}
+  .course-fields{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end}
+  .rm-btn{width:40px;height:46px;background:var(--red-light);border:1.5px solid #f5bfba;border-radius:var(--radius-sm);color:var(--red);font-size:15px;cursor:pointer;transition:all .2s;flex-shrink:0}
+  .rm-btn:hover{background:var(--red);color:white}
+  .add-btn{width:100%;padding:11px;background:var(--gold-light);border:1.5px dashed var(--gold);border-radius:var(--radius-sm);color:var(--gold-dark);font-family:var(--font-main);font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;margin-bottom:20px}
+  .add-btn:hover{background:var(--gold);color:white}
+  @media(max-width:580px){.course-fields{grid-template-columns:1fr 1fr}.course-fields .input-group:first-child{grid-column:1/-1}}
+  </style>
 </head>
 <body>
-  <div class="bg-orb orb1"></div>
-  <div class="bg-orb orb2"></div>
-  <div class="bg-orb orb3"></div>
-
-  <nav class="site-nav" aria-label="ToolSuite navigation">
-    <a class="nav-link" href="index.html">₿ Crypto Calc</a>
-    <a class="nav-link active" href="gpa.html">🎓 GPA Calc</a>
-    <a class="nav-link" href="sensitivity.html">🎮 Sensitivity Calc</a>
-    <a class="nav-link" href="pdf.html">📄 PDF Editor</a>
-    <a class="nav-link" href="downloader.html">⬇️ Video Downloader</a>
+  <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div><div class="bg-orb orb3"></div>
+  <nav class="site-nav">
+    <a class="nav-link" href="index.html">₿ Crypto</a>
+    <a class="nav-link active" href="gpa.html">🎓 GPA</a>
+    <a class="nav-link" href="sensitivity.html">🎮 Sensitivity</a>
+    <a class="nav-link" href="converter.html">🎬 Converter</a>
+    <a class="nav-link" href="pdf.html">📄 PDF</a>
   </nav>
-
-  <div class="ad-banner ad-top"></div>
-
   <div class="page-wrapper">
     <header class="site-header">
       <div class="logo-row">
-        <div class="logo-icon" aria-hidden="true">🎓</div>
-        <div class="logo-text">
-          <h1 class="logo">GPA Calculator</h1>
-          <p class="tagline">Calculate your semester & cumulative GPA instantly</p>
-        </div>
+        <div class="logo-icon">🎓</div>
+        <div><h1 class="logo">GPA Calculator</h1><p class="tagline">Instant semester & cumulative GPA — free, no sign-up</p></div>
       </div>
     </header>
-
     <main class="main-layout">
-      <aside class="ad-sidebar"></aside>
-
-      <section class="calc-card" aria-label="GPA calculator">
-        <p class="section-label">📚 Enter your courses & grades</p>
-
+      <section class="calc-card">
+        <p class="section-label">📚 Your courses & grades</p>
         <div id="course-list"></div>
-
-        <button class="add-course-btn" type="button" id="addCourseBtn">+ Add Another Course</button>
-
-        <div style="height:20px"></div>
-        <button class="calc-btn" type="button" onclick="calculateGPA()">Calculate My GPA 🎓</button>
-
+        <button class="add-btn" type="button" id="addBtn">+ Add Another Course</button>
+        <button class="calc-btn" type="button" onclick="calcGPA()">Calculate My GPA 🎓</button>
         <div class="results-panel" id="results">
-          <div class="verdict-banner" id="verdict-banner">
-            <span class="verdict-emoji" id="verdict-emoji">🎉</span>
-            <div class="verdict-copy">
-              <div class="verdict-title" id="verdict-title">Great work!</div>
-              <div class="verdict-sub" id="verdict-sub">Here's your GPA breakdown</div>
-            </div>
+          <div class="verdict-banner" id="vbanner">
+            <span id="vemoji" class="verdict-emoji">🎓</span>
+            <div><div class="verdict-title" id="vtitle">Your GPA</div><div class="verdict-sub" id="vsub">Here is your breakdown</div></div>
           </div>
           <div class="results-grid">
-            <div class="result-card result-blue"><div class="res-icon">📊</div><div class="res-label">Semester GPA</div><div class="res-value res-large" id="val-gpa">—</div></div>
-            <div class="result-card result-accent2"><div class="res-icon">🏅</div><div class="res-label">Letter Grade</div><div class="res-value res-large" id="val-letter">—</div></div>
-            <div class="result-card"><div class="res-icon">📖</div><div class="res-label">Total Credits</div><div class="res-value" id="val-credits">—</div></div>
-            <div class="result-card"><div class="res-icon">⭐</div><div class="res-label">Quality Points</div><div class="res-value" id="val-points">—</div></div>
+            <div class="result-card rc"><div class="res-icon">📊</div><div class="res-label">Semester GPA</div><div class="res-value xl" id="v-gpa">—</div></div>
+            <div class="result-card rb"><div class="res-icon">🏅</div><div class="res-label">Letter Grade</div><div class="res-value xl" id="v-letter">—</div></div>
+            <div class="result-card"><div class="res-icon">📖</div><div class="res-label">Total Credits</div><div class="res-value" id="v-credits">—</div></div>
+            <div class="result-card"><div class="res-icon">⭐</div><div class="res-label">Quality Points</div><div class="res-value" id="v-points">—</div></div>
           </div>
-          <!-- GPA bar -->
-          <div class="roi-track-wrap">
-            <div class="roi-track-labels"><span>0.0</span><span>2.0</span><span>4.0</span></div>
-            <div class="roi-track">
-              <div class="roi-fill" id="gpa-fill"></div>
-              <div class="roi-needle" id="gpa-needle"></div>
-            </div>
+          <div class="bar-wrap">
+            <div class="bar-labels"><span>0.0</span><span>2.0</span><span>4.0</span></div>
+            <div class="bar-track"><div class="bar-fill" id="bfill"></div><div class="bar-needle" id="bneedle"></div></div>
           </div>
         </div>
-
         <button class="reset-btn" id="resetBtn" type="button" onclick="resetGPA()">↺ Start over</button>
       </section>
-
-      <aside class="ad-sidebar"></aside>
     </main>
-
-    <div class="ad-banner ad-mid"></div>
 
     <section class="info-section">
       <h2 class="info-title">How it works</h2>
       <div class="steps">
-        <div class="step"><div class="step-bubble">1</div><div class="step-body"><strong>Add your courses</strong><p>Enter the course name (optional), select your letter grade, and enter the credit hours.</p></div></div>
-        <div class="step"><div class="step-bubble">2</div><div class="step-body"><strong>Add more courses</strong><p>Click "+ Add Course" to add as many subjects as you need.</p></div></div>
-        <div class="step"><div class="step-bubble">3</div><div class="step-body"><strong>Calculate</strong><p>Hit the button and see your GPA, quality points, and letter grade instantly.</p></div></div>
-        <div class="step"><div class="step-bubble">✨</div><div class="step-body"><strong>Plan ahead</strong><p>Adjust grades to see what you need to hit your target GPA.</p></div></div>
+        <div class="step"><div class="step-bubble">1</div><div class="step-body"><strong>Add your courses</strong><p>Enter the course name, select your letter grade, and credit hours.</p></div></div>
+        <div class="step"><div class="step-bubble">2</div><div class="step-body"><strong>Add more</strong><p>Click "+ Add Another Course" for every subject this semester.</p></div></div>
+        <div class="step"><div class="step-bubble">3</div><div class="step-body"><strong>Calculate</strong><p>Hit the button and see your GPA, quality points and letter grade.</p></div></div>
+        <div class="step"><div class="step-bubble">✨</div><div class="step-body"><strong>Plan ahead</strong><p>Tweak grades to see what score you need to hit your target GPA.</p></div></div>
       </div>
     </section>
 
     <article class="seo-section">
       <h2>Free GPA Calculator for High School & College Students</h2>
-      <p>Not sure what your <strong>grade point average</strong> is this semester? Our free GPA calculator makes it effortless. Add your courses, select your grades, enter your credit hours, and get your exact GPA in seconds — no math required.</p>
-
+      <p>Not sure what your <strong>grade point average</strong> is this semester? Enter your courses, select your letter grades, add the credit hours, and get your exact GPA instantly — no math required, completely free.</p>
       <h3>How Is GPA Calculated?</h3>
-      <p>GPA is calculated by multiplying each course's <strong>grade points</strong> by its <strong>credit hours</strong>, summing all results (called quality points), then dividing by the total credit hours. For example: an A (4.0) in a 3-credit course gives 12 quality points. A B (3.0) in a 4-credit course gives 12 quality points. Total: 24 quality points ÷ 7 credits = 3.43 GPA.</p>
-
-      <h3>GPA Scale Reference</h3>
+      <p>GPA = Total Quality Points ÷ Total Credit Hours. Each letter grade has a point value (A = 4.0, B = 3.0, etc.). Multiply each grade's points by the course's credit hours to get quality points, sum them up, then divide by total credits.</p>
+      <h3>Standard 4.0 GPA Scale</h3>
       <ul>
         <li><strong>A / A+</strong> = 4.0 &nbsp;·&nbsp; <strong>A−</strong> = 3.7</li>
         <li><strong>B+</strong> = 3.3 &nbsp;·&nbsp; <strong>B</strong> = 3.0 &nbsp;·&nbsp; <strong>B−</strong> = 2.7</li>
         <li><strong>C+</strong> = 2.3 &nbsp;·&nbsp; <strong>C</strong> = 2.0 &nbsp;·&nbsp; <strong>C−</strong> = 1.7</li>
         <li><strong>D+</strong> = 1.3 &nbsp;·&nbsp; <strong>D</strong> = 1.0 &nbsp;·&nbsp; <strong>F</strong> = 0.0</li>
       </ul>
-
-      <h3>Why Track Your GPA?</h3>
-      <p>Your GPA affects scholarship eligibility, academic probation, college admissions, and job applications. Many scholarships require a minimum 3.0 GPA. Graduate school programs often require a 3.5 or higher. Knowing your GPA early in the semester gives you time to adjust your study strategy.</p>
-
       <h3>Frequently Asked Questions</h3>
       <div class="faq-list">
-        <div class="faq-item"><button class="faq-q" type="button">What is a good GPA? <span class="faq-icon">+</span></button><div class="faq-a">A 3.0 GPA (B average) is generally considered good. A 3.5+ is considered excellent and competitive for honors, scholarships, and graduate school.</div></div>
-        <div class="faq-item"><button class="faq-q" type="button">What's the difference between semester and cumulative GPA? <span class="faq-icon">+</span></button><div class="faq-a">Semester GPA is calculated from just your current semester's courses. Cumulative GPA covers all semesters combined. This calculator computes semester GPA — add all your all-time courses for cumulative GPA.</div></div>
+        <div class="faq-item"><button class="faq-q" type="button">What is a good GPA? <span class="faq-icon">+</span></button><div class="faq-a">A 3.0 GPA (B average) is generally considered good. A 3.5 or higher is considered excellent and competitive for honours, scholarships, and graduate programmes.</div></div>
         <div class="faq-item"><button class="faq-q" type="button">How many courses can I add? <span class="faq-icon">+</span></button><div class="faq-a">As many as you need! Click "+ Add Another Course" to keep adding subjects until all your courses are listed.</div></div>
-        <div class="faq-item"><button class="faq-q" type="button">Does this use a weighted or unweighted GPA scale? <span class="faq-icon">+</span></button><div class="faq-a">This calculator uses the standard unweighted 4.0 scale, the most common system used by US colleges and universities.</div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Is this calculator free? <span class="faq-icon">+</span></button><div class="faq-a">Yes, 100% free. No account, no email, no subscription. Just open the page and start calculating.</div></div>
       </div>
     </article>
 
-    <div class="ad-banner ad-bottom"></div>
-
     <footer class="site-footer">
       <div class="footer-links">
-        <a href="index.html">Crypto Calculator</a>
-        <a href="gpa.html">GPA Calculator</a>
-        <a href="sensitivity.html">Sensitivity Calculator</a>
-        <a href="pdf.html">PDF Editor</a>
-        <a href="downloader.html">Video Downloader</a>
+        <a href="index.html">Crypto Calc</a><a href="gpa.html">GPA Calc</a>
+        <a href="sensitivity.html">Sensitivity</a><a href="converter.html">Converter</a><a href="pdf.html">PDF Editor</a>
       </div>
       <p>Made with ☀️ by ToolSuite &nbsp;·&nbsp; For educational purposes only.</p>
     </footer>
   </div>
-
-  <script src="gpa.js"></script>
-  <script>
-    document.querySelectorAll('.faq-q').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ans = btn.nextElementSibling;
-        const isOpen = ans.classList.contains('open');
-        document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-        document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
-        if (!isOpen) { ans.classList.add('open'); btn.classList.add('open'); }
-      });
-    });
-  </script>
+<script>
+'use strict';
+const GP={'A+':4,'A':4,'A-':3.7,'B+':3.3,'B':3,'B-':2.7,'C+':2.3,'C':2,'C-':1.7,'D+':1.3,'D':1,'D-':0.7,'F':0};
+const RL=(()=>{const ts=[],M=10,W=10000;return{ok(){const n=Date.now();while(ts.length&&n-ts[0]>W)ts.shift();if(ts.length>=M)return false;ts.push(n);return true;}}})();
+let cid=0;
+function st(id,v){const e=document.getElementById(id);if(e)e.textContent=String(v);}
+function ge(id){return document.getElementById(id);}
+function addCourse(g,cr){
+  cid++;
+  const d=document.createElement('div');d.className='course-row';d.id='cr-'+cid;
+  const opts=Object.keys(GP).map(k=>`<option value="${k}"${k===(g||'A')?' selected':''}>${k} (${GP[k].toFixed(1)})</option>`).join('');
+  d.innerHTML=`<div class="course-fields">
+    <div class="input-group"><label>Course</label><div class="input-wrap"><span class="prefix">📘</span><input type="text" class="cn" placeholder="e.g. Calculus" maxlength="60" autocomplete="off"/></div></div>
+    <div class="input-group"><label>Grade</label><div class="input-wrap" style="overflow:visible"><span class="prefix">🅰</span><select class="cg">${opts}</select></div></div>
+    <div class="input-group"><label>Credits</label><div class="input-wrap"><span class="prefix">⏱</span><input type="number" class="cc" placeholder="3" min="0.5" max="12" step="0.5" value="${cr||3}" autocomplete="off"/></div></div>
+    <button class="rm-btn" type="button" onclick="rmCourse(${cid})">✕</button>
+  </div>`;
+  ge('course-list').appendChild(d);
+}
+function rmCourse(id){const r=ge('cr-'+id);if(r)r.remove();if(!ge('course-list').children.length)addCourse();}
+function calcGPA(){
+  if(!RL.ok())return err('Slow down! Try again in a moment. 😊');
+  const rows=document.querySelectorAll('.course-row');
+  if(!rows.length)return err('Please add at least one course! 📚');
+  let tc=0,tp=0,ok=true;
+  rows.forEach(r=>{
+    const g=r.querySelector('.cg').value,cr=parseFloat(r.querySelector('.cc').value);
+    if(!GP.hasOwnProperty(g)||isNaN(cr)||cr<=0||cr>12){ok=false;return;}
+    tc+=cr;tp+=GP[g]*cr;
+  });
+  if(!ok)return err('Check credit hours — all must be between 0.5 and 12. 🙏');
+  if(!tc)return err('Total credits must be greater than zero! 😊');
+  const gpa=tp/tc,ltr=toLetter(gpa),v=verdict(gpa);
+  st('v-gpa',gpa.toFixed(2));st('v-letter',ltr);st('v-credits',tc.toFixed(1)+' cr');st('v-points',tp.toFixed(2));
+  st('vemoji',v.e);st('vtitle',v.t);st('vsub',v.s);
+  const b=ge('vbanner');if(b)b.className='verdict-banner '+v.c;
+  const pct=(gpa/4)*100,col=gpa>=3.5?'var(--green)':gpa>=2.5?'var(--gold)':'var(--red)';
+  const n=ge('bneedle'),f=ge('bfill');
+  if(n){n.style.left=pct+'%';n.style.borderColor=col;}
+  if(f){f.style.width=pct+'%';f.style.background=`linear-gradient(90deg,rgba(39,174,96,.1),${col}66)`;}
+  show();
+}
+function toLetter(g){if(g>=3.85)return'A';if(g>=3.5)return'A−';if(g>=3.15)return'B+';if(g>=2.85)return'B';if(g>=2.5)return'B−';if(g>=2.15)return'C+';if(g>=1.85)return'C';if(g>=1.5)return'C−';if(g>=1)return'D';return'F';}
+function verdict(g){
+  if(g>=3.7)return{e:'🏆',t:"Dean\'s List material!",s:`A ${g.toFixed(2)} GPA — outstanding!`,c:'win'};
+  if(g>=3.0)return{e:'😊',t:'Solid GPA!',s:`${g.toFixed(2)} is a strong grade point average.`,c:'win'};
+  if(g>=2.0)return{e:'📚',t:'Room to grow!',s:`${g.toFixed(2)} GPA — keep pushing!`,c:'info'};
+  return{e:'💪',t:'Time to study!',s:`${g.toFixed(2)} — every semester is a fresh start.`,c:'loss'};
+}
+function err(msg){
+  st('vemoji','⚠️');st('vtitle','Oops!');st('vsub',msg);
+  const b=ge('vbanner');if(b)b.className='verdict-banner loss';
+  ['v-gpa','v-letter','v-credits','v-points'].forEach(i=>st(i,'—'));
+  show();shake();
+}
+function show(){
+  const p=ge('results');if(p){p.style.display='block';p.style.animation='none';void p.offsetWidth;p.style.animation='pop-in .45s cubic-bezier(.22,1,.36,1)';}
+  const r=ge('resetBtn');if(r)r.style.display='block';
+}
+function shake(){const c=document.querySelector('.calc-card');if(c){c.style.animation='none';void c.offsetWidth;c.style.animation='shake .4s ease';}}
+function resetGPA(){
+  ge('course-list').innerHTML='';cid=0;addCourse('A',3);addCourse('B+',3);
+  const p=ge('results');if(p)p.style.display='none';
+  const r=ge('resetBtn');if(r)r.style.display='none';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  addCourse('A',3);addCourse('B+',3);
+  ge('addBtn').addEventListener('click',()=>addCourse());
+  document.querySelectorAll('.faq-q').forEach(b=>{b.addEventListener('click',()=>{
+    const a=b.nextElementSibling,o=a.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(x=>x.classList.remove('open'));
+    if(!o){a.classList.add('open');b.classList.add('open');}
+  });});
+});
+</script>
 </body>
 </html>
