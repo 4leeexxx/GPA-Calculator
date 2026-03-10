@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPA Calculator — Free Online Grade Point Average Calculator | ToolSuite</title>
+  <meta name="description" content="Free GPA calculator for high school and college students. Calculate your semester GPA, cumulative GPA, and see what grades you need to hit your target. Instant results." />
+  <meta name="keywords" content="GPA calculator, grade point average calculator, college GPA calculator, high school GPA calculator, cumulative GPA, semester GPA, how to calculate GPA, free GPA calculator online" />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; form-action 'none';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <nav class="site-nav" aria-label="ToolSuite navigation">
+    <a class="nav-link" href="index.html">₿ Crypto Calc</a>
+    <a class="nav-link active" href="gpa.html">🎓 GPA Calc</a>
+    <a class="nav-link" href="sensitivity.html">🎮 Sensitivity Calc</a>
+    <a class="nav-link" href="pdf.html">📄 PDF Editor</a>
+    <a class="nav-link" href="downloader.html">⬇️ Video Downloader</a>
+  </nav>
+
+  <div class="ad-banner ad-top"></div>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="logo-row">
+        <div class="logo-icon" aria-hidden="true">🎓</div>
+        <div class="logo-text">
+          <h1 class="logo">GPA Calculator</h1>
+          <p class="tagline">Calculate your semester & cumulative GPA instantly</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <aside class="ad-sidebar"></aside>
+
+      <section class="calc-card" aria-label="GPA calculator">
+        <p class="section-label">📚 Enter your courses & grades</p>
+
+        <div id="course-list"></div>
+
+        <button class="add-course-btn" type="button" id="addCourseBtn">+ Add Another Course</button>
+
+        <div style="height:20px"></div>
+        <button class="calc-btn" type="button" onclick="calculateGPA()">Calculate My GPA 🎓</button>
+
+        <div class="results-panel" id="results">
+          <div class="verdict-banner" id="verdict-banner">
+            <span class="verdict-emoji" id="verdict-emoji">🎉</span>
+            <div class="verdict-copy">
+              <div class="verdict-title" id="verdict-title">Great work!</div>
+              <div class="verdict-sub" id="verdict-sub">Here's your GPA breakdown</div>
+            </div>
+          </div>
+          <div class="results-grid">
+            <div class="result-card result-blue"><div class="res-icon">📊</div><div class="res-label">Semester GPA</div><div class="res-value res-large" id="val-gpa">—</div></div>
+            <div class="result-card result-accent2"><div class="res-icon">🏅</div><div class="res-label">Letter Grade</div><div class="res-value res-large" id="val-letter">—</div></div>
+            <div class="result-card"><div class="res-icon">📖</div><div class="res-label">Total Credits</div><div class="res-value" id="val-credits">—</div></div>
+            <div class="result-card"><div class="res-icon">⭐</div><div class="res-label">Quality Points</div><div class="res-value" id="val-points">—</div></div>
+          </div>
+          <!-- GPA bar -->
+          <div class="roi-track-wrap">
+            <div class="roi-track-labels"><span>0.0</span><span>2.0</span><span>4.0</span></div>
+            <div class="roi-track">
+              <div class="roi-fill" id="gpa-fill"></div>
+              <div class="roi-needle" id="gpa-needle"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="reset-btn" id="resetBtn" type="button" onclick="resetGPA()">↺ Start over</button>
+      </section>
+
+      <aside class="ad-sidebar"></aside>
+    </main>
+
+    <div class="ad-banner ad-mid"></div>
+
+    <section class="info-section">
+      <h2 class="info-title">How it works</h2>
+      <div class="steps">
+        <div class="step"><div class="step-bubble">1</div><div class="step-body"><strong>Add your courses</strong><p>Enter the course name (optional), select your letter grade, and enter the credit hours.</p></div></div>
+        <div class="step"><div class="step-bubble">2</div><div class="step-body"><strong>Add more courses</strong><p>Click "+ Add Course" to add as many subjects as you need.</p></div></div>
+        <div class="step"><div class="step-bubble">3</div><div class="step-body"><strong>Calculate</strong><p>Hit the button and see your GPA, quality points, and letter grade instantly.</p></div></div>
+        <div class="step"><div class="step-bubble">✨</div><div class="step-body"><strong>Plan ahead</strong><p>Adjust grades to see what you need to hit your target GPA.</p></div></div>
+      </div>
+    </section>
+
+    <article class="seo-section">
+      <h2>Free GPA Calculator for High School & College Students</h2>
+      <p>Not sure what your <strong>grade point average</strong> is this semester? Our free GPA calculator makes it effortless. Add your courses, select your grades, enter your credit hours, and get your exact GPA in seconds — no math required.</p>
+
+      <h3>How Is GPA Calculated?</h3>
+      <p>GPA is calculated by multiplying each course's <strong>grade points</strong> by its <strong>credit hours</strong>, summing all results (called quality points), then dividing by the total credit hours. For example: an A (4.0) in a 3-credit course gives 12 quality points. A B (3.0) in a 4-credit course gives 12 quality points. Total: 24 quality points ÷ 7 credits = 3.43 GPA.</p>
+
+      <h3>GPA Scale Reference</h3>
+      <ul>
+        <li><strong>A / A+</strong> = 4.0 &nbsp;·&nbsp; <strong>A−</strong> = 3.7</li>
+        <li><strong>B+</strong> = 3.3 &nbsp;·&nbsp; <strong>B</strong> = 3.0 &nbsp;·&nbsp; <strong>B−</strong> = 2.7</li>
+        <li><strong>C+</strong> = 2.3 &nbsp;·&nbsp; <strong>C</strong> = 2.0 &nbsp;·&nbsp; <strong>C−</strong> = 1.7</li>
+        <li><strong>D+</strong> = 1.3 &nbsp;·&nbsp; <strong>D</strong> = 1.0 &nbsp;·&nbsp; <strong>F</strong> = 0.0</li>
+      </ul>
+
+      <h3>Why Track Your GPA?</h3>
+      <p>Your GPA affects scholarship eligibility, academic probation, college admissions, and job applications. Many scholarships require a minimum 3.0 GPA. Graduate school programs often require a 3.5 or higher. Knowing your GPA early in the semester gives you time to adjust your study strategy.</p>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q" type="button">What is a good GPA? <span class="faq-icon">+</span></button><div class="faq-a">A 3.0 GPA (B average) is generally considered good. A 3.5+ is considered excellent and competitive for honors, scholarships, and graduate school.</div></div>
+        <div class="faq-item"><button class="faq-q" type="button">What's the difference between semester and cumulative GPA? <span class="faq-icon">+</span></button><div class="faq-a">Semester GPA is calculated from just your current semester's courses. Cumulative GPA covers all semesters combined. This calculator computes semester GPA — add all your all-time courses for cumulative GPA.</div></div>
+        <div class="faq-item"><button class="faq-q" type="button">How many courses can I add? <span class="faq-icon">+</span></button><div class="faq-a">As many as you need! Click "+ Add Another Course" to keep adding subjects until all your courses are listed.</div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Does this use a weighted or unweighted GPA scale? <span class="faq-icon">+</span></button><div class="faq-a">This calculator uses the standard unweighted 4.0 scale, the most common system used by US colleges and universities.</div></div>
+      </div>
+    </article>
+
+    <div class="ad-banner ad-bottom"></div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="index.html">Crypto Calculator</a>
+        <a href="gpa.html">GPA Calculator</a>
+        <a href="sensitivity.html">Sensitivity Calculator</a>
+        <a href="pdf.html">PDF Editor</a>
+        <a href="downloader.html">Video Downloader</a>
+      </div>
+      <p>Made with ☀️ by ToolSuite &nbsp;·&nbsp; For educational purposes only.</p>
+    </footer>
+  </div>
+
+  <script src="gpa.js"></script>
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ans = btn.nextElementSibling;
+        const isOpen = ans.classList.contains('open');
+        document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+        if (!isOpen) { ans.classList.add('open'); btn.classList.add('open'); }
+      });
+    });
+  </script>
+</body>
+</html>
